@@ -3,23 +3,43 @@ class IngredientsController < ApplicationController
     @ingredients = Ingredient.all
   end
 
-  def new 
+  def new
+    @ingredient = Ingredient.new 
   end
 
-  def create 
+  def create
+    @ingredient = Ingredient.create(ingredient_params)
+    if @ingredient.valid?
+      @ingredient.save
+      redirect_to ingredient_path(@ingredient)
+    else 
+      render :new
+    end
   end
 
-  def edit 
-  end 
+  def edit
+    @ingredient = Ingredient.find(params[:id])
+  end
 
-  def update 
-  end 
+  def update
+    @ingredient = Ingredient.find(params[:id])
+    if @ingredient.update(params[:id])
+      @ingredient.update(params[:id])
+      @ingredient.save
+      redirect_to ingredient_path(@ingredient)
+    else 
+      render :edit
+    end
+  end
+      
+      
+  end
 
-  def show 
-  end 
+  def show
+  end
 
   private
 
-  def ingredient_params 
+  def ingredient_params
   end
 end
