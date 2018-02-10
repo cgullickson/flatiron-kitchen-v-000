@@ -4,7 +4,7 @@ class IngredientsController < ApplicationController
   end
 
   def new
-    @ingredient = Ingredient.new 
+    @ingredient = Ingredient.new
   end
 
   def create
@@ -12,7 +12,7 @@ class IngredientsController < ApplicationController
     if @ingredient.valid?
       @ingredient.save
       redirect_to ingredient_path(@ingredient)
-    else 
+    else
       render :new
     end
   end
@@ -27,15 +27,13 @@ class IngredientsController < ApplicationController
       @ingredient.update(params[:id])
       @ingredient.save
       redirect_to ingredient_path(@ingredient)
-    else 
+    else
       render :edit
     end
   end
-      
-      
-  end
 
   def show
+    @ingredient = Ingredient.find(params[:id])
   end
 
   private
